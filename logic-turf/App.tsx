@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TrackBiasPattern, PredictionResult } from './types';
-// ↓ ここで正しくインポートできています！
+// ↓ ここが重要！AIではなく自作ロジックを読み込みます
 import { analyzeTrackBiasLocal } from './services/localAnalysisService'; 
 import BiasSelector from './components/BiasSelector';
 import AnalysisReport from './components/AnalysisReport';
@@ -15,7 +15,6 @@ function App() {
   const [raceName, setRaceName] = useState('');
   const [location, setLocation] = useState('');
   const [budget, setBudget] = useState(3000);
-  // Default to AUTO as requested
   const [biasPattern, setBiasPattern] = useState<TrackBiasPattern>(TrackBiasPattern.AUTO);
   const [notes, setNotes] = useState('');
 
@@ -30,7 +29,7 @@ function App() {
     setError(null);
 
     try {
-      // ▼▼▼ 修正箇所：ここを analyzeTrackBiasLocal に変更しました ▼▼▼
+      // ▼▼▼ AIを使わず、自作ロジックで判定する処理 ▼▼▼
       
       // メモやレース名に「ダート」が含まれていたらダート判定にする簡易ロジック
       const isDirt = raceName.includes('ダート') || notes.includes('ダート');
@@ -38,7 +37,7 @@ function App() {
 
       // ここで新しいロジック（ローカル）を呼び出します
       const markdown = await analyzeTrackBiasLocal(biasPattern, condition);
-      // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+      // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
       setResult({
         markdownContent: markdown,
