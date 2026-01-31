@@ -134,4 +134,41 @@ function App() {
                     value={location}
                     onChange={(e) => setLocation(e.target.value)}
                     placeholder="例：中山競馬場"
-                    className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold-5
+                    className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all placeholder:text-slate-600"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Step 2: Bias */}
+            <BiasSelector selected={biasPattern} onSelect={setBiasPattern} />
+
+            {/* Step 3: Capital & Notes */}
+            <div className="bg-slate-900 border border-slate-800 rounded-xl p-6 shadow-xl">
+              <h3 className="text-sm font-semibold text-slate-400 uppercase tracking-wider mb-4">Step 3: 資金戦略 & 補足 (Strategy)</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div className="space-y-2">
+                  <label className="text-sm text-slate-300 font-medium flex items-center gap-2">
+                    <Wallet size={16} className="text-gold-500" /> 投資予算
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="number"
+                      value={budget}
+                      onChange={(e) => setBudget(Number(e.target.value))}
+                      className="w-full bg-slate-950 border border-slate-700 rounded-lg pl-4 pr-10 py-3 text-white focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-all"
+                    />
+                    <span className="absolute right-4 top-3 text-slate-500">円</span>
+                  </div>
+                  <p className="text-xs text-slate-500">※推奨: 期待値最大化のため、傾斜配分を行います。</p>
+                </div>
+                <div className="space-y-2">
+                   <label className="text-sm text-slate-300 font-medium flex items-center gap-2">
+                    <TrendingUp size={16} className="text-gold-500" /> 気になる馬・メモ
+                  </label>
+                  <input
+                    type="text"
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="例：ルメールの馬が過剰人気気味..."
+                    className="w-full bg-slate-950 border border-slate-700 rounded-lg px-4 py-3 text-white
