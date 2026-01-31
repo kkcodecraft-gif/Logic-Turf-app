@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TrackBiasPattern, PredictionResult } from './types';
-// ↓ ここが重要！AIではなく自作ロジックを読み込みます
+// ↓ ここで自作ロジック（localAnalysisService）を読み込みます
 import { analyzeTrackBiasLocal } from './services/localAnalysisService'; 
 import BiasSelector from './components/BiasSelector';
 import AnalysisReport from './components/AnalysisReport';
